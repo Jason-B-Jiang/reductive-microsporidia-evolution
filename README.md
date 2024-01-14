@@ -5,7 +5,11 @@ Read the pre-print here: https://www.biorxiv.org/content/10.1101/2023.12.31.5737
 
 This repo contains the environment and Snakemake pipeline needed to enact the main workflow in Figure 1.
 
+## Prerequisites
+- Local installation of Singularity >= v3.10
+
 ## Set-up
+1. 
 
 ## Running the main workflow
 
