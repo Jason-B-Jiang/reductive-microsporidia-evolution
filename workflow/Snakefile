@@ -1,0 +1,141 @@
+# Set working directory to parent directory (i.e: main directory for this project)
+# Snakemake complains sometimes when working with files in parent directories...
+import os
+os.chdir(os.path.dirname(os.getcwd()))  # set working dir to parent dir
+
+singularity: "singularity/container.sif"
+configfile: "snakemake_config.yaml"
+
+rule all:
+	input: "results/aligned_ortholog_domain_architectures.csv"
+
+rule run_orthofinder:
+	input: config['proteomes']
+	params:
+		all_v_all=config['all_v_all_algo']
+	output: directory("results/OrthoFinder")
+	shell:
+		"""
+		orthofinder -f {input} -og -S {params.all_v_all} -o {output} -n OrthoFinder
+		"""
+		
+rule create_ortholog_length_hashmap:
+	# create an R environment mapping ortholog names to their protein
+	# lengths for each species, and save as a readable RDS file in
+	# resources folder
+	input: config['proteomes']
+	output: "resources/ortholog_lengths.rds"
+	shell: "Rscript workflow/scripts/make_ortholog_lengths_hash.R {input} {output}"
+
+rule get_single_copy_orthogroups:
+	# From Orthogroups.tsv from OrthoFinder, filter the orthogroups to
+	# those with a single-copy ortholog in yeast and a single-copy
+	# ortholog from *any* other species
+	input: "results/OrthoFinder", "resources/ortholog_lengths.rds"
+	params:
+		ref_species=config['reference_species'],
+		outgroups=config['outgroup_species']
+	output: "results/single_copy_orthogroups.csv", "resources/orthogroups_for_hmmscan"
+	shell:
+		"""
+		Rscript workflow/scripts/get_single_copy_orthogroups.R \
+			{input[0]} \
+			{params.ref_species} \
+			{input[1]} \
+			{output} \
+			{params.outgroups}
+		"""
+		
+rule create_hmmscan_commands:
+	input: "resources/orthogroups_for_hmmscan"
+	params:
+		pfam_lib=config['pfam_lib']
+	output: "resources/hmmscan_commands"
+	shell:
+		"""
+		touch resources/tmp
+		
+		while read orthogroup; do
+			echo hmmscan -o results/hmmscan/"$orthogroup" \
+			--cut_ga {params.pfam_lib} \
+			results/OrthoFinder/Results_OrthoFinder/Orthogroup_Sequences/"$orthogroup".fa >> resources/tmp
+		done < {input}
+		
+		mv resources/tmp {output}
+		"""
+		
+# note: I could've done this step without the pre-made commands file, and using
+# wildcards to create the hmmscan output for each orthogroup, but that lead
+# to Snakemake taking insanely long to build a DAG
+rule run_hmmscan_on_single_copy_orthogroups:
+	input: "resources/hmmscan_commands"
+	output: directory("results/hmmscan")
+	shell:
+		"""
+		mkdir {output}
+		parallel < {input}
+		"""
+		
+rule create_cath_resolve_hits_commands:
+	input: "results/hmmscan"
+	params:
+		crh_script="workflow/scripts/run_cath_resolve_hits.sh"
+	output: "resources/cath_resolve_hits_commands"
+	shell:
+		"""
+		touch resources/tmp
+		
+		for hmmscan_file in {input}/OG*; do
+			echo bash {params.crh_script} ${{hmmscan_file}} \
+				results/domain_architectures/$(basename ${{hmmscan_file}}) \
+			>> resources/tmp
+		done
+		
+		mv resources/tmp {output}
+		"""
+	
+rule get_domain_architectures_from_hmmscan:
+	# workflow/scripts/run_cath_resolve_hits.sh {input} {output}
+	input: "resources/cath_resolve_hits_commands"
+	output: directory("results/domain_architectures/")
+	shell:
+		"""
+		parallel < {input}
+		
+		# remove temporary folder of split hmmscan hits for the orthogroup
+		rm -r ./resources/tmp
+		"""
+		
+rule align_orthogroup_domain_architectures:
+	input: "results/domain_architectures", 
+	output: "results/aligned_ortholog_domain_architectures.csv"
+	params:
+		orthogroups='results/single_copy_orthogroups.csv',
+		pfam_clans=config['pfam_clans']
+	shell:
+		"""
+		Rscript workflow/scripts/align_ortholog_domain_architectures.R \
+			{input} \
+			{params.orthogroups} \
+			{params.pfam_clans} \
+			{output}
+		"""
+
+rule singularity_test:
+	# run "snakemake --cores all --use-singularity singularity_test"
+	# to ensure all required software can be called without error from
+	# the Singularity container
+	#
+	# NOTE: you may encounter an error from the tidyverse import step,
+	# "System has not been booted with systemd as init system (PID 1)"
+	# This only affects datetime operations in R, which we aren't doing,
+	# so this is fine.
+	shell:
+        	"""
+        	cath-resolve-hits -h
+        	blastp -help
+        	diamond help
+        	hmmscan -h
+        	orthofinder -h
+        	R --slave -e 'library(tidyverse)'
+        	"""

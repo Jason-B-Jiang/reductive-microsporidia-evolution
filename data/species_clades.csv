@@ -1,0 +1,53 @@
+species,clade,clade_broad,clade_fig_4b
+A_alge,Other Canonical Microsporidia,Canonical Microsporidia,Neopereziida
+T_rati,Other Canonical Microsporidia,Canonical Microsporidia,Neopereziida
+A_locu,Other Canonical Microsporidia,Canonical Microsporidia,Neopereziida
+A_sp.,Metchnikovellids,Metchnikovellids,Metchnikovellids
+M_incu,Metchnikovellids,Metchnikovellids,Metchnikovellids
+C_dike,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+D_muel,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+D_roes,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+E_aedi,Other Canonical Microsporidia,Canonical Microsporidia,Amblyosporida
+E_bien,Enterocytozoon,Canonical Microsporidia,Enterocytozoonida
+E_canc,Enterocytozoon,Canonical Microsporidia,Enterocytozoonida
+E_hepa,Enterocytozoon,Canonical Microsporidia,Enterocytozoonida
+E_brev,Other Canonical Microsporidia,Canonical Microsporidia,Enterocytozoonida
+P_epip,Other Canonical Microsporidia,Canonical Microsporidia,Enterocytozoonida
+P_phil,Other Canonical Microsporidia,Canonical Microsporidia,Enterocytozoonida
+V_corn,Other Canonical Microsporidia,Canonical Microsporidia,Enterocytozoonida
+E_cuni,Encephalitozoon,Canonical Microsporidia,Nosematida
+E_hell,Encephalitozoon,Canonical Microsporidia,Nosematida
+E_inte,Encephalitozoon,Canonical Microsporidia,Nosematida
+E_roma,Encephalitozoon,Canonical Microsporidia,Nosematida
+N_cera,Nosema,Canonical Microsporidia,Nosematida
+N_gran,Nosema,Canonical Microsporidia,Nosematida
+O_coll,Encephalitozoon,Canonical Microsporidia,Nosematida
+T_cont,Other Canonical Microsporidia,Canonical Microsporidia,Glugeida
+H_erio,Enterocytozoon,Canonical Microsporidia,Enterocytozoonida
+H_magn,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+H_tvae,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+M_daph,Early Diverging Microsporidia,Early Diverging Microsporidia,Early Diverging Microsporidia
+N_apis,Nosema,Canonical Microsporidia,Nosematida
+N_ausu,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_cide,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_disp,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_ferr,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_homo,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_iron,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_majo,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_mino,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_okwa,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_pari,Nematocida,Canonical Microsporidia,Ovavesiculida
+N_bomb,Nosema,Canonical Microsporidia,Nosematida
+P_neur,Other Canonical Microsporidia,Canonical Microsporidia,Other Canonical Microsporidia
+P_sacc,Early Diverging Microsporidia,Early Diverging Microsporidia,Early Diverging Microsporidia
+R_allo,Rozella,Rozella,Rozella
+S_loph,Other Canonical Microsporidia,Canonical Microsporidia,Glugeida
+T_homi,Other Canonical Microsporidia,Canonical Microsporidia,Glugeida
+V_culi,Other Canonical Microsporidia,Canonical Microsporidia,Glugeida
+H_sapi,Outgroup,Outgroup,Outgroup
+D_disc,Outgroup,Outgroup,Outgroup
+D_mela,Outgroup,Outgroup,Outgroup
+C_eleg,Outgroup,Outgroup,Outgroup
+S_pomb,Outgroup,Outgroup,Outgroup
+D_reri,Outgroup,Outgroup,Outgroup

@@ -1,0 +1,7 @@
+proteomes: 'data/proteomes'
+all_v_all_algo: 'blast'
+reference_species: 'S_cere'
+outgroup_species: ['R_allo', 'S_pombe', 'D_disc', 'C_eleg', 'H_sapi', 'D_mela', 'D_reri']
+excluded_species: ['P_neur', 'D_roes', 'C_dike', 'N_apis', 'N_bomb', 'H_magn', 'H_tvae', 'D_muel']
+pfam_lib: 'data/pfam/Pfam-A.hmm'
+pfam_clans: 'data/pfam/Pfam-A-clans.tsv'
