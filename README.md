@@ -6,7 +6,8 @@ Read the pre-print here: https://www.biorxiv.org/content/10.1101/2023.12.31.5737
 This repo contains the environment and Snakemake pipeline needed to enact the main workflow in Figure 1.
 
 ## Prerequisites
-- Local installation of Singularity >= v3.10
+- Local installation of Singularity >= 3.10
+- Local installation of Python >= 3.10
 
 ## Set-up
 1. Clone repo to local machine, then cd into repo
@@ -17,9 +18,13 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
    ./setup.sh
    
    source venv_snakemake/bin/activate
+
+   snakemake --help
 4. Initialize Singularity container for OrthoFinder, HMMER, cath-resolve-hits + all required R packages
+   
    sudo singularity build container.sif container.def
-5. Test Snakemake workflow
+6. Test Snakemake workflow
+   
    
    
 
