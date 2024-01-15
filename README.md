@@ -12,10 +12,12 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
 1. Clone repo to local machine, then cd into repo
 2. Run set-up script to initialize Python virtual environment for Snakemake
    NOTE: if you run into permission issues, try running chmod u+x setup.sh
-
    ./setup.sh
-
-3. 
+   source venv_snakemake/bin/activate
+4. Initialize Singularity container for OrthoFinder, HMMER, cath-resolve-hits + all required R packages
+   sudo singularity build container.sif container.def
+5. Test Snakemake workflow
+   
    
 
 ## Running the main workflow
