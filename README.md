@@ -47,3 +47,30 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
 
 ## Ancilliary scripts to create figures (to be run interactively)
 Note: these scripts require that you have already run the main workflow, so all orthogroups and domain architectures have already been assigned to your input proteomes.
+
+### Figure 2
+Fig 2A - workflow/scripts/plot_ortholog_length_distributions.R
+
+Fig 2B - workflow/scripts/plot_domain_arch_change_freqs.R
+
+Fig 2C - workflow/scripts/compare_domain_and_linker_lengths.R
+
+### Figure 3
+Fig 3B, 3C, 3D - workflow/scripts/classify_lost_c_terminal_residues.R
+
+### Figure 4
+Fig 4B - workflow/scripts/annotate_domain_essentiality_with_ptcs.R
+
+### Figure 5
+Fig 5A - workflow/scripts/domain_arch_hierarchical_clustering.R
+
+Fig 5B - workflow/scripts/create_lost_doms_tsne.R
+
+### Figure S1
+workflow/scripts/annotate_domain_essentiality_with_ptcs.R
+
+### Figure S2
+workflow/scripts/plot_ortholog_length_distributions.R
+
+### Figure S3
+workflow/scripts/compare_ortholog_lengths_to_percent_identities.R
