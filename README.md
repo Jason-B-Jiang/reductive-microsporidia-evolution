@@ -30,6 +30,7 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
 ### NOTE: you may see a message like "System has not been booted with systemd as init system (PID 1). Can't operate."
 ### This does NOT affect our workflow, and only concerns datetime operations with R tidyverse (which we don't use)
    cd workflow
+   
    snakemake --cores all --use-singularity singularity_test
    
 
@@ -42,6 +43,7 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
 
 ### 4. Run main workflow
        cd workflow  # assuming you're not already in that folder
+       
        snakemake --cores all --use-singularity
    
 
