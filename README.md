@@ -26,9 +26,10 @@ This repo contains the environment and Snakemake pipeline needed to enact the ma
    
    sudo singularity build container.sif container.def
    
-### 4. Test Snakemake workflow
-   
-   
+### 4. Test Snakemake workflow + Singularity container
+### NOTE: you may see a message like "System has not been booted with systemd as init system (PID 1). Can't operate."
+### This does NOT affect our workflow, and only concerns datetime operations with R tidyverse (which we don't use)
+   snakemake --cores all --use-singularity singularity_test
    
 
 ## Running the main workflow
